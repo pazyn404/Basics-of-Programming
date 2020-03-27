@@ -1,0 +1,11 @@
+#include "iostream"
+using namespace std;
+int main() {
+
+	int* ptr = new int;
+	cin >> *ptr;
+	cout << abs(*ptr);
+	cout << '\n';
+	system("pause");
+	return 0;
+}
