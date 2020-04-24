@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+const int char_length = 256;
+//функція зчитування з файлу
+/*void fin(ifstream& _file, char* _str1, char* _str2) {
+    _file.getline(_str1, char_length);
+    _file.getline(_str2, char_length);
+}*/
+
+void push(char* str, int pos) {//зсуває елементи масиву з [pos,strlen(str)-1), а останній видаляє(ну присвоює '\x0')
+    for (int i = pos; i < strlen(str)-1; i++) {
+        str[i] = str[i + 1];
+    }
+    str[strlen(str) - 1] = '\x0';
+}
+
+void del_str1_str2(char* _str1, char* _str2) {//перевіряє елемент першої стрічки на наявність в другій
+    for (int i = 0; i < strlen(_str2); i++) {
+        for (int j = 0; j < strlen(_str1); j++) {
+            if (_str2[i] == _str1[j]) {
+                push(_str1, j);
+            }
+        }
+    }
+}
+
+int main() {
+    char str1[char_length];
+    char str2[char_length];
+    //ifstream file("data_for_example.txt");
+    //fin(file, str1, str2);
+    cin.getline(str1, char_length);//введення з калавіатури
+    cin.getline(str2, char_length);//введення з клавіатури
+    del_str1_str2(str1, str2);
+    cout << "After delete:" << '\n';
+    for (int i = 0; i < strlen(str1); i++) {
+        cout << str1[i];
+    }
+    cout << '\n';
+    system("pause");
+    return 0;
+}
