@@ -1,0 +1,62 @@
+#include "iostream"
+using namespace std;
+// множення квадратної матриці (результат квадратна матриця, яка повертається параметром в функцію виводу матриці)
+int** matrix_multiply(int** _matrix, int _n) {
+	int** __matrix=new int*[_n];//створення результуючої матриці
+	for (int i = 0; i < _n; i++) {
+		__matrix[i] = new int[_n];//створення результуючої матриці
+	}
+	for (int i = 0; i < _n; i++) {
+		for (int j = 0; j < _n; j++) {
+			__matrix[i][j] = 0;//ініціалізація матриці нулями
+		}
+	}
+	for (int i = 0; i < _n; i++) {
+		for (int j = 0; j < _n; j++) {
+			for (int k = 0; k < _n; k++) {
+				__matrix[i][j] += _matrix[i][k] * _matrix[k][j];//множення матриць
+			}
+		}
+	}
+
+	return __matrix;
+}
+//введення матриці
+void matrix_input(int** _matrix, int _n) {
+	for (int i = 0; i < _n; i++) {
+		for (int j = 0; j < _n; j++) {
+			cout << "Input matrix el:";
+			cin >> _matrix[i][j];
+		}
+	}
+}
+//виведення матриці
+void matrix_output(int** _matrix, int _n) {
+	for (int i = 0; i < _n; i++) {
+		for (int j = 0; j < _n; j++) {
+			cout << _matrix[i][j] << ' ';
+		}
+		cout << '\n';
+	}
+	cout << '\n';
+}
+
+
+
+int main() {
+	int n;//розмір матриці
+	cout << "Input n:";
+	cin >> n;
+	int** matrix = new int*[n];
+	for (int i = 0; i < n; i++) {
+		matrix[i] = new int[n];
+	}
+	matrix_input(matrix, n);
+	matrix_output(matrix_multiply(matrix, n) , n);
+	for (int i = 0; i < n; i++) {
+		delete[] matrix[i];//очищення пам'яті 
+	}
+	delete[] matrix;//очищення пам'яті 
+	system("pause");
+	return 0;
+}

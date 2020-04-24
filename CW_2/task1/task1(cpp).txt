@@ -1,0 +1,42 @@
+#include "iostream"
+using namespace std;
+//зсув нулів(умова задачі)
+void push_zero(int* _arr, int _arr_length) {
+	int j = 0;//інціціалізація нульового довжини масиву((j-1)-кількість нулів в масиві)
+	for (int i = 0; i < _arr_length; i++)
+	{
+		if (_arr[i] != 0) _arr[j++] = _arr[i];//ненульові елементи заносимо на початок масиву
+	}
+	while (j < _arr_length) {
+		_arr[j++] = 0;//заповнюємо нулями кінець масиву
+			
+	}
+}
+//введеня масиву
+void arr_input(int* _arr, int _arr_length) {
+	for (int i = 0; i < _arr_length; i++) {
+		cout << "Input" << ' ' << "arr" << '[' << i << ']';
+		cin >> _arr[i];
+	}
+}
+//виведення масиву
+void arr_output(int* _arr, int _arr_length) {
+	for (int i = 0; i < _arr_length; i++) {
+		cout << _arr[i] << ' ';
+	}
+	cout << '\n';
+}
+
+int main() {
+
+	int arr_length;//кількість елементів в дин. масиві
+	cout << "Input length of array:";
+	cin >> arr_length;
+	int* arr = new int[arr_length];
+	arr_input(arr, arr_length);
+	push_zero(arr, arr_length);
+	arr_output(arr, arr_length);
+	delete[] arr;//очищення пам'яті
+	system("pause");
+	return 0;
+}
