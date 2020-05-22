@@ -1,0 +1,54 @@
+#pragma once
+
+#include <iostream>
+
+using namespace std;
+
+
+struct complex_number {
+private:
+    float real_part;
+    float complex_part;
+public:
+    complex_number();
+    complex_number(float real_part,float complex_part);
+    float get_real_part() { return real_part; };
+    float get_complex_part() { return complex_part; };
+    void set_real_part(float real_part) { this->real_part = real_part; };
+    void set_complex_part(float complex_part) { this->complex_part = complex_part; };
+    void print();
+    float length();
+};
+
+complex_number::complex_number() {
+    real_part = 0;
+    complex_part = 0;
+}
+
+complex_number::complex_number(float real_part, float complex_part) {
+    this->real_part = real_part;
+    this->complex_part = complex_part;
+}
+
+void complex_number::print() {
+    if (real_part == 0) {
+        if (complex_part == 0) {
+            return;
+        }
+        else {
+            cout << complex_part << '*' << 'i';
+        }
+    }
+    else {
+        if (complex_part == 0) {
+            cout << real_part;
+        }
+        else {
+            cout << real_part << '+' << complex_part << '*' << 'i';
+        }
+    }
+}
+
+float complex_number::length() {
+    return sqrt(real_part * real_part + complex_part * complex_part);
+}

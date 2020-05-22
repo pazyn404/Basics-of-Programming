@@ -1,0 +1,103 @@
+#pragma once
+
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+
+struct car {
+private:
+	string brand;
+	string model;
+	int year;
+	float capacity;
+public:
+	car() {
+		brand = "";
+		model = "";
+		year = 0;
+		capacity = 0;
+	}
+	car(string brand, string model, int year, float capacity) {
+		this->brand = brand;
+		this->model = model;
+		this->year = year;
+		this->capacity = capacity;
+	}
+	void set_brand(string brand) {
+		this->brand = brand;
+	}
+	void set_model(string model) {
+		this->model = model;
+	}
+	void set_year(int year) {
+		this->year = year;
+	}
+	void set_capacity(float capacity) {
+		this->capacity = capacity;
+	}
+	string get_brand() {
+		return brand;
+	}
+	string get_model() {
+		return model;
+	}
+	int get_year() {
+		return year;
+	}
+	float get_capacity() {
+		return capacity;
+	}
+	void print() {
+		cout << brand << ' ' << model << ' ' << year << ' ' << capacity;
+	}
+};
+
+void sort(car* arr,int count) {
+	for (int i = 0; i < count-1; i++) {
+		for (int j = i + 1; j < count; j++) {
+			if (arr[i].get_brand() == arr[j].get_brand()) {
+				if (i + 1 != j) {
+					int k = j-1;
+					while (arr[k-1].get_brand() != arr[i].get_brand()) {
+						k--;
+					}
+					car temp(arr[j].get_brand(), arr[j].get_model(), arr[j].get_year(), arr[j].get_capacity());
+					arr[j].set_brand(arr[k].get_brand());
+					arr[j].set_model(arr[k].get_model());
+					arr[j].set_year(arr[k].get_year());
+					arr[j].set_capacity(arr[k].get_capacity());
+					arr[k].set_brand(temp.get_brand());
+					arr[k].set_model(temp.get_model());
+					arr[k].set_year(temp.get_year());
+					arr[k].set_capacity(temp.get_capacity());
+					i++;
+				}
+			}
+		}
+	}
+	for (int i = 0; i < count - 1; i++) {
+		for (int j = i + 1; j < count; j++) {
+			if (arr[i].get_model() == arr[j].get_model() && arr[i].get_brand()==arr[j].get_brand()) {
+				if (i + 1 != j) {
+					int k = j - 1;
+					while (arr[k - 1].get_model() != arr[i].get_model()) {
+						k--;
+					}
+					car temp(arr[j].get_brand(), arr[j].get_model(), arr[j].get_year(), arr[j].get_capacity());
+					arr[j].set_brand(arr[k].get_brand());
+					arr[j].set_model(arr[k].get_model());
+					arr[j].set_year(arr[k].get_year());
+					arr[j].set_capacity(arr[k].get_capacity());
+					arr[k].set_brand(temp.get_brand());
+					arr[k].set_model(temp.get_model());
+					arr[k].set_year(temp.get_year());
+					arr[k].set_capacity(temp.get_capacity());
+					i++;
+				}
+			}
+		}
+	}
+}

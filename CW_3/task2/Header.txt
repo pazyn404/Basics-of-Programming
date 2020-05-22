@@ -1,0 +1,33 @@
+#pragma once
+
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+struct student {
+	string name;
+	string surname;
+	bool hist;
+	bool prog;
+	bool alg;
+	student() {
+		name = "";
+		surname = "";
+		hist = 0;
+		prog = 0;
+		alg = 0;
+	}
+	bool one_course() {
+		if (hist + prog + alg == 1) {
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
+	void print() {
+		cout << name << ' ' << surname << ' ' << hist << ' ' << prog << ' ' << alg;
+	}
+};

@@ -1,0 +1,64 @@
+
+#include "Header.h"
+
+
+int main() {
+    ifstream file;
+    file.open("D:/data_car.txt");
+    char str[1024];
+    int count = 0;
+    if (file.is_open()) {
+        file.seekg(0);
+        while (!file.eof()) {
+            file.getline(str, 1024);
+            count++;
+        }
+        file.seekg(0);
+        car* cars = new car[count];
+        for (int i = 0; i < count; i++) {
+            string brand;
+            file >> brand;
+            cars[i].set_brand(brand);
+            string model;
+            file >> model;
+            cars[i].set_model(model);
+            int year;
+            file >> year;
+            cars[i].set_year(year);
+            float capacity;
+            file >> capacity;
+            cars[i].set_capacity(capacity);
+        }
+        for (int i = 0; i < count; i++) {
+            cars[i].print();
+            cout << '\n';
+        }
+        cout << '\n';
+        cout << '\n';
+        sort(cars, count);
+        cout << '\n';
+        cout << '\n';
+        for (int i = 0; i < count; i++) {
+            cars[i].print();
+            cout << '\n';
+        }
+        cout << '\n';
+        cout << '\n';
+        int pos = 0;
+        for (int i = 1; i < count; i++) {
+            if (cars[pos].get_year() < cars[i].get_year()) {
+                pos = i;
+            }
+        }
+        cars[pos].print();
+        cout << '\n';
+        file.close();
+    }
+    else {
+        cout << "File fault";
+    }
+        
+
+    cout << '\n';
+    return 0;
+}

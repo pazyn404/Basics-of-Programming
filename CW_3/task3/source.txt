@@ -1,0 +1,17 @@
+
+#include "Header.h"
+
+
+int main() {
+
+
+
+    complex_number a(5,12);
+    cout << '|';
+    a.print();
+    cout << '|';
+    cout << '=';
+    cout << a.length();
+    cout << '\n';
+    return 0;
+}

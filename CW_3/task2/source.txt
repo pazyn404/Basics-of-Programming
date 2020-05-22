@@ -1,0 +1,56 @@
+
+#include "Header1.h"
+
+
+int main() {
+    ifstream file;
+    file.open("D:/data_student.txt");
+    char str[1024];
+    int count = 0;
+    if (file.is_open()) {
+        file.seekg(0);
+        while (!file.eof()) {
+            file.getline(str, 1024);
+            count++;
+        }
+        cout << count << '\n';
+        file.seekg(0);
+        student* students = new student[count];
+        for (int i = 0; i < count; i++) {
+            string name;
+            file >> name;
+            students[i].name = name;
+            string surname;
+            file >> surname;
+            students[i].surname = surname;
+            bool hist;
+            file >> hist;
+            students[i].hist = hist;
+            bool prog;
+            file >> prog;
+            students[i].prog = prog;
+            bool alg;
+            file >> alg;
+            students[i].alg = alg;
+        }
+        for (int i = 0; i < count; i++) {
+            students[i].print();
+            cout << '\n';
+        }
+        cout << '\n';
+        cout << '\n';
+        for (int i = 0; i < count; i++) {
+            if (students[i].one_course()) {
+                students[i].print();
+            }
+        }
+
+    }
+    else {
+        cout << "File fault";
+    }
+
+
+    cout << '\n';
+    return 0;
+}
